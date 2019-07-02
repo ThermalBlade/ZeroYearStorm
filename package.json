@@ -17,7 +17,9 @@
     "url": "https://github.com/ThermalBlade/ZeroYearStorm/issues"
   },
   "homepage": "https://github.com/ThermalBlade/ZeroYearStorm#readme",
-  "dependencies": {},
+  "dependencies": {
+    "python-shell": "^1.0.7"
+  },
   "devDependencies": {
     "electron-builder": "^20.44.4",
     "electron": "^5.0.6"
