@@ -68,14 +68,73 @@ function numbersRow(line){
     return(row);
 }
 
-function opAdd(line){
+function opAdd(line, l){
+    var row = [];
+    var findingWord = true;
+    var entry = "";
+    var char;
+    var firstSpace = false;
+    for(var i = 0; i < line.length; i++){
+        char = line.charAt(i);
+        if(findingWord === true && char !== " "){
+            findingWord = false;
+        }
+        if(findingWord === false){
+            if(i === line.length - 1){
+                entry += char;
+                findingWord = true;
+            }
+            else{
+                entry += char;
+            }
+            if(findingWord === true){
+                row.push(entry);
+                for(var i = 0; i < l - 1; i ++){
+                    row.push("");
+                }
+                entry = "";
+            }
+        }
+    }
+    return(row);
+}
 
+function flowRow(line){
+    var row = [];
+    var findingWord = true;
+    var entry = "";
+    var char;
+    for(var i = 0; i < line.length; i++){
+        char = line.charAt(i);
+        if(findingWord === true && char !== " "){
+            findingWord = false;
+        }
+        if(findingWord === false){
+            if(char === " "){
+                findingWord = true;
+            }
+            else if(i === line.length - 1){
+                entry += char;
+                findingWord = true;
+            }
+            else{
+                entry += char;
+            }
+            if(findingWord === true){
+                row.push(entry);
+                entry = "";
+            }
+        }
+    }
+    return(row);
 }
 
 function fi(filePath){
     let looking = false;
     let post = false;
-    matrix = []
+    let flowRow = false;
+    let postCounter = 0;
+    var matrix = [];
     lineReader.eachLine(filePath, function(line){
         if(line.includes("RATIOS APPLIED TO PRECIPITATION")){
             looking = true;
@@ -89,10 +148,16 @@ function fi(filePath){
                 post = true;
             }
             else if(post === true){
-                matrix.push(opAdd(line));
+                postCounter += 1;
+                if(postCounter === 2){
+                    matrix.push(opAdd(line, matrix[0].length));
+                    post = false;
+                    flowRow = true;
+                    postCounter = 0;
+                }
             }
-            if(line.includes("+")){
-
+            else if(flowRow == true){
+                matrix.push(flowRow(line))
             }
         }
     });
