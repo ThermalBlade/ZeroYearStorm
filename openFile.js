@@ -73,7 +73,6 @@ function opAdd(line, l){
     var findingWord = true;
     var entry = "";
     var char;
-    var firstSpace = false;
     for(var i = 0; i < line.length; i++){
         char = line.charAt(i);
         if(findingWord === true && char !== " "){
@@ -89,7 +88,7 @@ function opAdd(line, l){
             }
             if(findingWord === true){
                 row.push(entry);
-                for(var i = 0; i < l - 1; i ++){
+                for(var j = 0; j < l - 1; j ++){
                     row.push("");
                 }
                 entry = "";
@@ -129,15 +128,57 @@ function flowRow(line){
     return(row);
 }
 
+function timeRow(line){
+    var row = [];
+    var findingWord = true;
+    var entry = "";
+    var char;
+    for(var i = 0; i < 4; i++){
+        row.push("");
+    }
+    for(var i = 0; i < line.length; i++){
+        char = line.charAt(i);
+        if(findingWord === true && char !== " "){
+            findingWord = false;
+        }
+        if(findingWord === false){
+            if(char === " "){
+                findingWord = true;
+            }
+            else if(i === line.length - 1){
+                entry += char;
+                findingWord = true;
+            }
+            else{
+                entry += char;
+            }
+            if(findingWord === true){
+                row.push(entry);
+                entry = "";
+            }
+        }
+    }
+    return(row);
+}
+
+function printMatrix(matrix){
+    document.getElementById('inser').innerHTML = matrix[2];
+}
+
 function fi(filePath){
     let looking = false;
     let post = false;
-    let flowRow = false;
+    let flowingRow = false;
+    let timingRow = false;
     let postCounter = 0;
-    var matrix = [];
     lineReader.eachLine(filePath, function(line){
         if(line.includes("RATIOS APPLIED TO PRECIPITATION")){
             looking = true;
+            matrix = [];
+        }
+        else if(line.includes("SUMMARY OF KINEMATIC WAVE")){
+            printMatrix(matrix);
+            looking = false;
         }
         if(looking === true){
             if(line.includes("OPERATION")){
@@ -152,16 +193,22 @@ function fi(filePath){
                 if(postCounter === 2){
                     matrix.push(opAdd(line, matrix[0].length));
                     post = false;
-                    flowRow = true;
+                    flowingRow = true;
                     postCounter = 0;
                 }
             }
-            else if(flowRow == true){
+            else if(flowingRow == true){
                 matrix.push(flowRow(line))
+                flowingRow = false;
+                timingRow = true;
+            }
+            else if(timingRow == true){
+                matrix.push(timeRow(line))
+                post = true;
+                timingRow = false; 
             }
         }
     });
-    console.log(matrix);
 }
 
 let username = process.env.username || process.env.user;
