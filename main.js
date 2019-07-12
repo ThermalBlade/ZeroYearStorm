@@ -19,7 +19,7 @@ app.on('ready', function(){
     //Load HTML into window
     //pass file://dirname/mainWindow.html
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'mainWindow.html'),
+        pathname: path.join(__dirname, 'loadWindow.html'),
         protocol:'file:',
         slashes:true
     }));
@@ -31,6 +31,14 @@ app.on('ready', function(){
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     //Insert Menu
     Menu.setApplicationMenu(mainMenu);
+});
+
+ipcMain.on('changeWindow', function(e){
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'displayWindow.html'),
+        protocol:'file:',
+        slashes:true
+    }));
 });
 
 //Create Menu Template
@@ -82,6 +90,16 @@ if(process.env.NODE_ENV !== 'production'){
             },
             {
                 role: 'reload'
+            },
+            {
+                label: 'Go Back',
+                click(item){ //Put DevTools on current window
+                    mainWindow.loadURL(url.format({
+                        pathname: path.join(__dirname, 'loadWindow.html'),
+                        protocol:'file:',
+                        slashes:true
+                    }));
+                }
             }
         ]
     });

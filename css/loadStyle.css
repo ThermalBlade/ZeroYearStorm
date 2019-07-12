@@ -1,0 +1,92 @@
+body{
+    background-color: rgb(34, 34, 34);
+    margin: 16px;
+}
+
+table{
+    border-collapse: collapse;
+    text-align: center;
+    margin: 20px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+td{
+    border: 2px solid grey;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 6px;
+}
+
+tr{
+    background-color: rgb(63, 63, 63);
+    transition: 0.25s;
+}
+tr:hover{
+    background-color: rgb(100, 26, 26);
+}
+
+td:first-child{
+    border: 2px solid rgb(53, 53, 53);
+    background-color: rgb(107, 107, 107);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 6px 14px;
+    user-select: none;
+    font-weight: bold;
+    transition: 0.25s;
+}
+td:first-child:hover{
+    border: 2px solid rgb(53, 53, 53);
+    background-color: rgb(100, 26, 26);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 14px 14px;
+    user-select: none;
+}
+
+/*.normalCell{
+    border: 2px solid grey;
+    background-color: rgb(63, 63, 63);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 6px;
+}
+
+.deleteRowCell{
+    border: 2px solid rgb(53, 53, 53);
+    background-color: rgb(107, 107, 107);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 6px;
+    user-select: none;
+    font-weight: bold;
+    transition: 0.25s;
+}
+.deleteRowCell:hover{
+    border: 2px solid rgb(53, 53, 53);
+    background-color: rgb(100, 26, 26);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 6px;
+    user-select: none;
+}
+
+.deleteRowTypeCell{
+    border: 2px solid rgb(53, 53, 53);
+    background-color: rgb(107, 107, 107);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 6px;
+    user-select: none;
+    font-weight: bold;
+}
+
+.invisibleCell{
+    border-collapse: collapse;
+    text-align: center;
+}
+
+TABLE tr#newId{
+    background: yellow !important;
+}*/

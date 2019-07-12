@@ -1,5 +1,8 @@
 const {dialog} = require('electron').remote;
 const lineReader = require('line-reader');
+const electron = require('electron');
+const {ipcRenderer} = electron;
+var tmp = require('tmp');
 
 function startingRow(line){
     var row = [];
@@ -162,15 +165,34 @@ function timeRow(line){
 }
 
 function printMatrix(matrix){
-    document.getElementById('inser').innerHTML = matrix[2];
+    var newTable = document.createElement("TABLE");
+    for(var i = 0; i < matrix.length; i ++){
+        var row = document.createElement("tr");
+        var cell = document.createElement("td");
+        buttonNode = document.createTextNode("X");
+        cell.appendChild(buttonNode);
+        cell.setAttribute("class", "deleteRowCell");
+        row.setAttribute("class", "deleteTopRow");
+        row.appendChild(cell);
+        
+        //Fill table with HEC-1 output
+        for(var j = 0; j < matrix[0].length; j ++){
+            var normalCell = document.createElement("td");
+            var textNode = document.createTextNode(matrix[i][j]);
+            normalCell.appendChild(textNode);
+            row.appendChild(normalCell);
+        }
+        newTable.appendChild(row);
+    }
+    document.getElementById("container").appendChild(newTable);
 }
 
 function fi(filePath){
-    let looking = false;
-    let post = false;
-    let flowingRow = false;
-    let timingRow = false;
-    let postCounter = 0;
+    var looking = false;
+    var post = false;
+    var flowingRow = false;
+    var timingRow = false;
+    var postCounter = 0;
     lineReader.eachLine(filePath, function(line){
         if(line.includes("RATIOS APPLIED TO PRECIPITATION")){
             looking = true;
@@ -191,10 +213,16 @@ function fi(filePath){
             else if(post === true){
                 postCounter += 1;
                 if(postCounter === 2){
-                    matrix.push(opAdd(line, matrix[0].length));
-                    post = false;
-                    flowingRow = true;
-                    postCounter = 0;
+                    if(line.length === 0){
+                        printMatrix(matrix);
+                        looking = false;
+                    }
+                    else{
+                        matrix.push(opAdd(line, matrix[0].length));
+                        post = false;
+                        flowingRow = true;
+                        postCounter = 0;
+                    }
                 }
             }
             else if(flowingRow == true){
@@ -220,6 +248,7 @@ else{
     defPath = ''
 }
 document.querySelector('#selectBtn').addEventListener('click', function(e){
+    e.preventDefault();
     dialog.showOpenDialog({
         defaultPath: defPath,
         properties: ['openFile'],
