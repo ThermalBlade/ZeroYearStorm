@@ -170,9 +170,43 @@ function printMatrix(matrix){
         var row = document.createElement("tr");
         var cell = document.createElement("td");
         buttonNode = document.createTextNode("X");
-        cell.appendChild(buttonNode);
-        cell.setAttribute("class", "deleteRowCell");
-        row.setAttribute("class", "deleteTopRow");
+        if(i === 0){
+            cell.setAttribute("class", "deleteTopRowCell");
+            row.setAttribute("class", "topRow");
+            cell.appendChild(buttonNode);
+        }
+        else if(i === 1){
+            cell.setAttribute("class", "deleteSecondRowCell");
+            row.setAttribute("class", "secondRow");
+            cell.appendChild(buttonNode);
+        }
+        else if(i == 2){
+            cell.setAttribute("class", "deleteOperationRowCell");
+            row.setAttribute("class", "operationRow");
+            cell.appendChild(buttonNode);
+        }
+        else if(i == 3){
+            cell.setAttribute("class", "deleteFlowRowCell");
+            row.setAttribute("class", "flowRow");
+            cell.appendChild(buttonNode);
+        }
+        else if(i == 4){
+            cell.setAttribute("class", "deleteTimeRowCell");
+            row.setAttribute("class", "timeRow");
+            cell.appendChild(buttonNode);
+        }
+        else if((i + 1) % 3 === 0){
+            row.setAttribute("class", "operationRow");
+        }
+        else if(i % 3 === 0){
+            row.setAttribute("class", "flowRow");
+        }
+        else if((i - 1) % 3 === 0){
+            row.setAttribute("class", "timeRow");
+        }
+        if(i > 4){
+            cell.setAttribute("class", "invisibleCell");
+        }
         row.appendChild(cell);
         
         //Fill table with HEC-1 output
@@ -180,6 +214,7 @@ function printMatrix(matrix){
             var normalCell = document.createElement("td");
             var textNode = document.createTextNode(matrix[i][j]);
             normalCell.appendChild(textNode);
+            normalCell.setAttribute("class", "normalCell");
             row.appendChild(normalCell);
         }
         newTable.appendChild(row);

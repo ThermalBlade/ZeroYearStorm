@@ -11,23 +11,41 @@ table{
     font-size: 16px;
 }
 
-td{
+.normalCell{
     border: 2px solid grey;
     color: rgb(255, 255, 255);
     text-align: center;
     padding: 6px;
 }
 
-tr{
-    background-color: rgb(63, 63, 63);
+.topRow{
+    background-color: rgb(72, 72, 72);
     transition: 0.25s;
 }
-tr:hover{
-    background-color: rgb(100, 26, 26);
+.secondRow{
+    background-color: rgb(72, 72, 72);
+    transition: 0.25s;
+}
+.operationRow{
+    background-color: rgb(60, 60, 60);
+    transition: 0.25s;
+}
+.flowRow{
+    background-color: rgb(66, 66, 66);
+    transition: 0.25s;
+}
+.timeRow{
+    background-color: rgb(72, 72, 72);
+    transition: 0.25s;
 }
 
-td:first-child{
+.deleteTopRowCell,
+.deleteSecondRowCell, 
+.deleteOperationRowCell,
+.deleteFlowRowCell,
+.deleteTimeRowCell{
     border: 2px solid rgb(53, 53, 53);
+    border-right: 2px solid grey;
     background-color: rgb(107, 107, 107);
     color: rgb(255, 255, 255);
     text-align: center;
@@ -36,8 +54,13 @@ td:first-child{
     font-weight: bold;
     transition: 0.25s;
 }
-td:first-child:hover{
+.deleteTopRowCell:hover,
+.deleteSecondRowCell:hover, 
+.deleteOperationRowCell:hover,
+.deleteFlowRowCell:hover,
+.deleteTimeRowCell:hover{
     border: 2px solid rgb(53, 53, 53);
+    border-right: 2px solid grey;
     background-color: rgb(100, 26, 26);
     color: rgb(255, 255, 255);
     text-align: center;
@@ -45,48 +68,10 @@ td:first-child:hover{
     user-select: none;
 }
 
-/*.normalCell{
-    border: 2px solid grey;
-    background-color: rgb(63, 63, 63);
-    color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 6px;
-}
-
-.deleteRowCell{
-    border: 2px solid rgb(53, 53, 53);
-    background-color: rgb(107, 107, 107);
-    color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 6px;
+.invisibleCell{
+    background-color: rgb(34, 34, 34);
+    padding: 6px 14px;
     user-select: none;
     font-weight: bold;
     transition: 0.25s;
 }
-.deleteRowCell:hover{
-    border: 2px solid rgb(53, 53, 53);
-    background-color: rgb(100, 26, 26);
-    color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 6px;
-    user-select: none;
-}
-
-.deleteRowTypeCell{
-    border: 2px solid rgb(53, 53, 53);
-    background-color: rgb(107, 107, 107);
-    color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 6px;
-    user-select: none;
-    font-weight: bold;
-}
-
-.invisibleCell{
-    border-collapse: collapse;
-    text-align: center;
-}
-
-TABLE tr#newId{
-    background: yellow !important;
-}*/
