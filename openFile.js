@@ -166,6 +166,7 @@ function timeRow(line){
 
 function printMatrix(matrix){
     var newTable = document.createElement("TABLE");
+    newTable.setAttribute("id", "hec1Table");
     for(var i = 0; i < matrix.length; i ++){
         var row = document.createElement("tr");
         var cell = document.createElement("td");
@@ -219,6 +220,12 @@ function printMatrix(matrix){
         }
         newTable.appendChild(row);
     }
+    var newButton = document.createElement("button");
+    var text = document.createTextNode("Download XLSX");
+    newButton.appendChild(text);
+    newButton.setAttribute("id", "downloadButton");
+    document.getElementById("container").appendChild(newButton);
+
     document.getElementById("container").appendChild(newTable);
 }
 

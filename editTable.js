@@ -93,3 +93,51 @@ function someListener(e){
         });
     });
 }
+
+document.addEventListener("click", someButtonListener);
+function someButtonListener(e){
+    if(e.target.id === "downloadButton")
+    {
+        $(document).ready(function () {
+            $('#hec1Table').each(function () {
+                var $table = $(this);
+                var $button = $("<button type='button'>");
+                $button.text("Export to spreadsheet");
+                $button.insertAfter($table);
+        
+                $button.click(function () {
+                    var csv = $table.table2CSV({
+                        delivery: 'value'
+                    });
+                    window.location.href = 'data:text/csv;charset=UTF-8,' 
+                    + encodeURIComponent(csv);
+                });
+            });
+        })
+    }
+
+}
+
+/*var $  = require( 'jquery' );
+require( 'jszip' );
+require( 'datatables.net-dt' )();
+require( 'datatables.net-buttons-dt' )();
+require( 'datatables.net-buttons/js/buttons.html5.js' )();
+
+document.addEventListener("click", someButtonListener);
+function someButtonListener(e){
+    if(e.target.id === "downloadButton")
+    {
+        $(document).ready(function() {
+            $('#hec1Table').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5'
+                ]
+            } );
+        } );
+    }
+
+}*/
