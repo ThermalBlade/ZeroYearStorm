@@ -4,53 +4,61 @@ function changeColor(color, elms) {
         elms[i].style.backgroundColor = color;
     }
 }
+
 function checkForHighlight(){
+    let redHighlight = "rgb(100, 26, 26)";
+    let lightGrey = "rgb(72, 72, 72)";
+    let mediumGrey = "rgb(66, 66, 66)";
+    let darkGrey = "rgb(60, 60, 60)";
+
+    //Top Row
     $('.deleteTopRowCell').on('mouseenter', function(){
         let elms = document.getElementsByClassName('topRow');
-        changeColor("rgb(100, 26, 26)", elms)
+        changeColor(redHighlight, elms)
     })
     $('.deleteTopRowCell').on('mouseout', function(){
         let elms = document.getElementsByClassName('topRow');
-        changeColor("rgb(72, 72, 72)", elms)
+        changeColor(lightGrey, elms)
     })
-
+    //Second Row
     $('.deleteSecondRowCell').on('mouseenter', function(){
         let elms = document.getElementsByClassName('secondRow');
-        changeColor("rgb(100, 26, 26)", elms)
+        changeColor(redHighlight, elms)
     })
     $('.deleteSecondRowCell').on('mouseout', function(){
         let elms = document.getElementsByClassName('secondRow');
-        changeColor("rgb(72, 72, 72)", elms)
+        changeColor(lightGrey, elms)
     })
-
+    //Operation Row
     $('.deleteOperationRowCell').on('mouseenter', function(){
         let elms = document.getElementsByClassName("operationRow");
-        changeColor("rgb(100, 26, 26)", elms)
+        changeColor(redHighlight, elms)
     })
     $('.deleteOperationRowCell').on('mouseout', function(){
         let elms = document.getElementsByClassName("operationRow");
-        changeColor("rgb(60, 60, 60)", elms)
+        changeColor(darkGrey, elms)
     })
-
+    //Flow Row
     $('.deleteFlowRowCell').on('mouseenter', function(){
         let elms = document.getElementsByClassName("flowRow");
-        changeColor("rgb(100, 26, 26)", elms)
+        changeColor(redHighlight, elms)
     })
     $('.deleteFlowRowCell').on('mouseout', function(){
         let elms = document.getElementsByClassName("flowRow");
-        changeColor("rgb(66, 66, 66)", elms)
+        changeColor(mediumGrey, elms)
     })
-
+    //Time Row
     $('.deleteTimeRowCell').on('mouseenter', function(){
         let elms = document.getElementsByClassName("timeRow");
-        changeColor("rgb(100, 26, 26)", elms)
+        changeColor(redHighlight, elms)
     })
     $('.deleteTimeRowCell').on('mouseout', function(){
         let elms = document.getElementsByClassName("timeRow");
-        changeColor("rgb(72, 72, 72)", elms)
+        changeColor(lightGrey, elms)
     })
 }
 
+//MOUSEOVER AND DELETE ROWS
 document.addEventListener("mouseover", someListener);
 function someListener(e){
     e.preventDefault();
@@ -94,50 +102,29 @@ function someListener(e){
     });
 }
 
-document.addEventListener("click", someButtonListener);
-function someButtonListener(e){
+//DOWNLOAD CSV BUTTON
+document.addEventListener("click", function(e){
     if(e.target.id === "downloadButton")
     {
-        $(document).ready(function () {
-            $('#hec1Table').each(function () {
-                var $table = $(this);
-                var $button = $("<button type='button'>");
-                $button.text("Export to spreadsheet");
-                $button.insertAfter($table);
-        
-                $button.click(function () {
-                    var csv = $table.table2CSV({
-                        delivery: 'value'
-                    });
-                    window.location.href = 'data:text/csv;charset=UTF-8,' 
-                    + encodeURIComponent(csv);
-                });
-            });
-        })
+        function downloadCSV(csv, filename) {
+            var csvFile;
+            csvFile = new Blob([csv], {type: "text/csv"});
+            download(csvFile, "testing.csv", "text/csv");
+        }
+        function exportTableToCSV(filename) {
+            var csv = [];
+            var rows = document.querySelectorAll("table tr");
+            
+            for (var i = 0; i < rows.length; i++) {
+                var row = [], cols = rows[i].querySelectorAll("td, th");
+                
+                for (var j = 0; j < cols.length; j++) 
+                    row.push(cols[j].innerText);
+                
+                csv.push(row.join(","));        
+            }
+            downloadCSV(csv.join("\n"), filename);
+        }
+        exportTableToCSV("working.csv")
     }
-
-}
-
-/*var $  = require( 'jquery' );
-require( 'jszip' );
-require( 'datatables.net-dt' )();
-require( 'datatables.net-buttons-dt' )();
-require( 'datatables.net-buttons/js/buttons.html5.js' )();
-
-document.addEventListener("click", someButtonListener);
-function someButtonListener(e){
-    if(e.target.id === "downloadButton")
-    {
-        $(document).ready(function() {
-            $('#hec1Table').DataTable( {
-                dom: 'Bfrtip',
-                buttons: [
-                    'copyHtml5',
-                    'excelHtml5',
-                    'csvHtml5'
-                ]
-            } );
-        } );
-    }
-
-}*/
+});

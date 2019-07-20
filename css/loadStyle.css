@@ -1,23 +1,33 @@
 body{
     background-color: rgb(34, 34, 34);
-    margin: 16px;
+}
+
+#container{
+    margin: 10px 16px 10px 16px;
 }
 
 table{
     border-collapse: collapse;
     text-align: center;
-    margin: 20px;
+    margin: 6px;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 16px;
+    white-space: nowrap;
 }
 
+button{
+    white-space: nowrap;
+    padding: 4px;
+    margin: 6px;
+}
+
+/*.OUT table*/
 .normalCell{
     border: 2px solid grey;
     color: rgb(255, 255, 255);
     text-align: center;
     padding: 6px;
 }
-
 .topRow{
     background-color: rgb(72, 72, 72);
     transition: 0.25s;
@@ -38,7 +48,6 @@ table{
     background-color: rgb(72, 72, 72);
     transition: 0.25s;
 }
-
 .deleteTopRowCell,
 .deleteSecondRowCell, 
 .deleteOperationRowCell,
@@ -67,7 +76,6 @@ table{
     padding: 14px 14px;
     user-select: none;
 }
-
 .invisibleCell{
     background-color: rgb(34, 34, 34);
     padding: 6px 14px;

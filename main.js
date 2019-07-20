@@ -2,13 +2,13 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 
-//SET ENV
+//Environment type
 process.env.NODE_ENV = 'development'
 
-const {app, BrowserWindow, Menu, ipcMain} = electron;
-
+const {app, BrowserWindow, Menu} = electron;
 let mainWindow;
 
+//Set up the main window
 app.on('ready', function(){ 
     //Create new window
     mainWindow = new BrowserWindow({
@@ -33,31 +33,11 @@ app.on('ready', function(){
     Menu.setApplicationMenu(mainMenu);
 });
 
-ipcMain.on('changeWindow', function(e){
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'displayWindow.html'),
-        protocol:'file:',
-        slashes:true
-    }));
-});
-
 //Create Menu Template
 const mainMenuTemplate = [
     {
         label: 'File',
         submenu:[
-            {
-                label: 'Add Item',
-                click(){
-                    createAddWindow();
-                }
-            },
-            {
-                label: 'Clear Items',
-                click(){
-                    mainWindow.webContents.send('item:clear');
-                }
-            },
             {
                 label: 'Quit',
                 accelerator: process.platform == 'darwin' ? //On mac?

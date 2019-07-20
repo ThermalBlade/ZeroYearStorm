@@ -1,1 +1,1 @@
-Hec1 conversions.
+HEC-1 conversions to css by Cole Proctor.
