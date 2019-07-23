@@ -35,7 +35,7 @@ button{
     padding: 6px 14px;
     user-select: none;
     font-weight: bold;
-    transition: 0.3s;
+    transition: 0.25s;
 }
 .deleteOperationColCell:hover,
 .deleteStationColCell:hover, 
@@ -55,6 +55,7 @@ button{
     color: rgb(255, 255, 255);
     text-align: center;
     padding: 6px;
+    transition: 0.25s;
 }
 .topRow{
     background-color: rgb(72, 72, 72);
@@ -89,7 +90,7 @@ button{
     padding: 6px 14px;
     user-select: none;
     font-weight: bold;
-    transition: 0.3s;
+    transition: 0.25s;
 }
 .deleteTopRowCell:hover,
 .deleteSecondRowCell:hover, 

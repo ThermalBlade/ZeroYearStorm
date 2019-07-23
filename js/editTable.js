@@ -1,9 +1,39 @@
-var Promise = require('bluebird');
+function changeColColorBack(table, col){
+    let lightGrey = "rgb(72, 72, 72)";
+    let mediumGrey = "rgb(66, 66, 66)";
+    let darkGrey = "rgb(60, 60, 60)";
+    for(var i = 1, row; row = table.rows[i], i < table.rows.length; i ++){
+        let className = row.className;
+        if(className === "topRow"){
+            row.cells[col].style.backgroundColor = lightGrey;
+        }
+        else if(className === "secondRow"){
+            row.cells[col].style.backgroundColor = lightGrey;
+        }
+        else if(className === "operationRow"){
+            row.cells[col].style.backgroundColor = darkGrey;
+        }
+        else if(className === "flowRow"){
+            row.cells[col].style.backgroundColor = mediumGrey;
+        }
+        else if(className === "timeRow"){
+            row.cells[col].style.backgroundColor = lightGrey;
+        }
+    }
+}
+
+function changeColColor(color, table, col) {
+    for(var i = 1, row; row = table.rows[i], i < table.rows.length; i ++){
+        row.cells[col].style.backgroundColor = color;
+    }
+}
 
 function changeColor(color, elms) {
     let n = elms.length;
-    for(var i = 0; i < n; i ++) {
-        elms[i].style.backgroundColor = color;
+    for(var i = 0; i < n; i ++){
+        for(var j = 1; j < elms[0].cells.length; j ++){
+            elms[i].cells[j].style.backgroundColor = color;
+        }
     }
 }
 
@@ -58,6 +88,61 @@ function checkForHighlight(){
         let elms = document.getElementsByClassName("timeRow");
         changeColor(lightGrey, elms)
     })
+
+    //Operation Col
+    $('.deleteOperationColCell').on('mouseenter', function(){
+        let table = document.getElementById('hec1Table');
+        let row = document.getElementById("topButtonsRow");
+        let button = "deleteOperationColCell"
+        let colCounter;
+        for(var j = 0; j < row.cells.length; j ++){
+            if(row.cells[j].className === button){
+                colCounter = j;
+                break;
+            }
+        }
+        changeColColor(redHighlight, table, colCounter);
+    })
+    $('.deleteOperationColCell').on('mouseout', function(){
+        let table = document.getElementById('hec1Table');
+        let row = document.getElementById("topButtonsRow");
+        let button = "deleteOperationColCell"
+        let colCounter;
+        for(var j = 0; j < row.cells.length; j ++){
+            if(row.cells[j].className === button){
+                colCounter = j;
+                break;
+            }
+        }
+        changeColColorBack(table, colCounter);
+    })
+    //Station Col
+    $('.deleteStationColCell').on('mouseenter', function(){
+        let table = document.getElementById('hec1Table');
+        let row = document.getElementById("topButtonsRow");
+        let button = "deleteStationColCell"
+        let colCounter;
+        for(var j = 0; j < row.cells.length; j ++){
+            if(row.cells[j].className === button){
+                colCounter = j;
+                break;
+            }
+        }
+        changeColColor(redHighlight, table, colCounter);
+    })
+    $('.deleteStationColCell').on('mouseout', function(){
+        let table = document.getElementById('hec1Table');
+        let row = document.getElementById("topButtonsRow");
+        let button = "deleteStationColCell"
+        let colCounter;
+        for(var j = 0; j < row.cells.length; j ++){
+            if(row.cells[j].className === button){
+                colCounter = j;
+                break;
+            }
+        }
+        changeColColorBack(table, colCounter);
+    })
 }
 
 //MOUSEOVER AND DELETE ROWS
@@ -69,37 +154,46 @@ function someListener(e){
         $(".deleteTopRowCell").click(function(){
             $('.topRow').animate({
                 opacity: 0.00001
-            }, 350, function(){
+            }, 250, function(){
                 $(this).remove();
             });
         });
         $(".deleteSecondRowCell").click(function(){
             $('.secondRow').animate({
                 opacity: 0.00001
-            }, 350, function(){
+            }, 250, function(){
                 $(this).remove();
             });
         });
         $(".deleteOperationRowCell").click(function(){
             $('.operationRow').animate({
                 opacity: 0.00001
-            }, 350, function(){
+            }, 250, function(){
                 $(this).remove();
             });
         });
         $(".deleteFlowRowCell").click(function(){
             $('.flowRow').animate({
                 opacity: 0.00001
-            }, 350, function(){
+            }, 250, function(){
                 $(this).remove();
             });
         });
         $(".deleteTimeRowCell").click(function(){
             $('.timeRow').animate({
                 opacity: 0.00001
-            }, 350, function(){
+            }, 250, function(){
                 $(this).remove();
             });
+        });
+        $(".deleteOperationColCell").click(function(){
+            $("tr").each(function(){
+                $(this).find("td:eq(1)").animate({
+                    opacity: 0.00001
+                }, 250, function(){
+                    $(this).remove();
+                });
+            })
         });
     });
 }

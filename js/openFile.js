@@ -16,7 +16,7 @@ function printMatrix(matrix){
 
     //TOP ROW OF COLUMN DELETE BUTTONS
     row = document.createElement("tr");
-    row.setAttribute("class", "topButtonsRow");
+    row.setAttribute("id", "topButtonsRow");
     cell = document.createElement("td");
     cell.setAttribute("class", "invisibleCell");
     row.appendChild(cell);
@@ -102,9 +102,6 @@ function printMatrix(matrix){
     else{
         throwError();
     }
-    /*for(var i = 0, row; row = newTable.rows[i], i < newTable.rows.length; i ++){
-        row.deleteCell(1);
-    }*/
 }
 
 //This chunk is functions that interpret the document, line-by-line
