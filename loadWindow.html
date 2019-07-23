@@ -5,10 +5,14 @@
     <link rel="stylesheet" type="text/css" href="css/loadStyle.css">
 </head>
 <body>
+    <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+            <p>Drag one or more files to this Drop Zone ...</p>
+    </div>
     <div id="container">
         <button id="selectBtn">Choose a File</button>
 
         <script src="https://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="js/dragAndDrop.js" type="text/javascript"></script>
         <script src="js/download.js" type="text/javascript"></script>
         <script src="js/openFile.js" type="text/javascript"></script>
         <script src="js/editTable.js" type="text/javascript"></script>

@@ -143,6 +143,87 @@ function checkForHighlight(){
         }
         changeColColorBack(table, colCounter);
     })
+    //Area Col
+    $('.deleteAreaColCell').on('mouseenter', function(){
+        let table = document.getElementById('hec1Table');
+        let row = document.getElementById("topButtonsRow");
+        let button = "deleteAreaColCell"
+        let colCounter;
+        for(var j = 0; j < row.cells.length; j ++){
+            if(row.cells[j].className === button){
+                colCounter = j;
+                break;
+            }
+        }
+        changeColColor(redHighlight, table, colCounter);
+    })
+    $('.deleteAreaColCell').on('mouseout', function(){
+        let table = document.getElementById('hec1Table');
+        let row = document.getElementById("topButtonsRow");
+        let button = "deleteAreaColCell"
+        let colCounter;
+        for(var j = 0; j < row.cells.length; j ++){
+            if(row.cells[j].className === button){
+                colCounter = j;
+                break;
+            }
+        }
+        changeColColorBack(table, colCounter);
+    })
+    //Plan Col
+    $('.deletePlanColCell').on('mouseenter', function(){
+        let table = document.getElementById('hec1Table');
+        let row = document.getElementById("topButtonsRow");
+        let button = "deletePlanColCell"
+        let colCounter;
+        for(var j = 0; j < row.cells.length; j ++){
+            if(row.cells[j].className === button){
+                colCounter = j;
+                break;
+            }
+        }
+        changeColColor(redHighlight, table, colCounter);
+    })
+    $('.deletePlanColCell').on('mouseout', function(){
+        let table = document.getElementById('hec1Table');
+        let row = document.getElementById("topButtonsRow");
+        let button = "deletePlanColCell"
+        let colCounter;
+        for(var j = 0; j < row.cells.length; j ++){
+            if(row.cells[j].className === button){
+                colCounter = j;
+                break;
+            }
+        }
+        changeColColorBack(table, colCounter);
+    })
+    //Flow Col
+    $('.deleteFlowColCell').on('mouseenter', function(){
+        let table = document.getElementById('hec1Table');
+        let row = document.getElementById("topButtonsRow");
+        let button = "deleteFlowColCell"
+        let colCounter;
+        for(var j = 0; j < row.cells.length; j ++){
+            if(row.cells[j].className === button){
+                colCounter = j;
+                break;
+            }
+        }
+        changeColColor(redHighlight, table, colCounter);
+    })
+    $('.deleteFlowColCell').on('mouseout', function(){
+        let table = document.getElementById('hec1Table');
+        let row = document.getElementById("topButtonsRow");
+        let button = "deleteFlowColCell"
+        let colCounter;
+        for(var j = 0; j < row.cells.length; j ++){
+            if(row.cells[j].className === button){
+                colCounter = j;
+                break;
+            }
+        }
+        changeColColorBack(table, colCounter);
+    })
 }
 
 //MOUSEOVER AND DELETE ROWS
@@ -186,9 +267,91 @@ function someListener(e){
                 $(this).remove();
             });
         });
+
         $(".deleteOperationColCell").click(function(){
+            let row = document.getElementById("topButtonsRow");
+            let button = "deleteOperationColCell"
+            let colCounter;
+            for(var j = 0; j < row.cells.length; j ++){
+                if(row.cells[j].className === button){
+                    colCounter = j;
+                    break;
+                }
+            }
             $("tr").each(function(){
-                $(this).find("td:eq(1)").animate({
+                $(this).find("td:eq(" + colCounter + ")").animate({
+                    opacity: 0.00001
+                }, 250, function(){
+                    $(this).remove();
+                });
+            })
+        });
+        $(".deleteStationColCell").click(function(){
+            let row = document.getElementById("topButtonsRow");
+            let button = "deleteStationColCell"
+            let colCounter;
+            for(var j = 0; j < row.cells.length; j ++){
+                if(row.cells[j].className === button){
+                    colCounter = j;
+                    break;
+                }
+            }
+            $("tr").each(function(){
+                $(this).find("td:eq(" + colCounter + ")").animate({
+                    opacity: 0.00001
+                }, 250, function(){
+                    $(this).remove();
+                });
+            })
+        });
+        $(".deleteAreaColCell").click(function(){
+            let row = document.getElementById("topButtonsRow");
+            let button = "deleteAreaColCell"
+            let colCounter;
+            for(var j = 0; j < row.cells.length; j ++){
+                if(row.cells[j].className === button){
+                    colCounter = j;
+                    break;
+                }
+            }
+            $("tr").each(function(){
+                $(this).find("td:eq(" + colCounter + ")").animate({
+                    opacity: 0.00001
+                }, 250, function(){
+                    $(this).remove();
+                });
+            })
+        });
+        $(".deletePlanColCell").click(function(){
+            let row = document.getElementById("topButtonsRow");
+            let button = "deletePlanColCell"
+            let colCounter;
+            for(var j = 0; j < row.cells.length; j ++){
+                if(row.cells[j].className === button){
+                    colCounter = j;
+                    break;
+                }
+            }
+            $("tr").each(function(){
+                $(this).find("td:eq(" + colCounter + ")").animate({
+                    opacity: 0.00001
+                }, 250, function(){
+                    $(this).remove();
+                });
+            })
+        });
+        $(".deleteFlowColCell").click(function(){
+            let row = document.getElementById("topButtonsRow");
+            let button = "deleteFlowColCell"
+            let colCounter;
+            for(var j = 0; j < row.cells.length; j ++){
+                if(row.cells[j].className === button){
+                    colCounter = j;
+                    break;
+                }
+            }
+            $("tr").each(function(){
+                $(this).find("td:eq(" + colCounter + ")").animate({
                     opacity: 0.00001
                 }, 250, function(){
                     $(this).remove();
@@ -211,10 +374,10 @@ document.addEventListener("click", function(e){
             var csv = [];
             var rows = document.querySelectorAll("table tr");
             
-            for (var i = 0; i < rows.length; i++) {
+            for (var i = 1; i < rows.length; i++) {
                 var row = [], cols = rows[i].querySelectorAll("td, th");
                 
-                for (var j = 0; j < cols.length; j++) 
+                for (var j = 1; j < cols.length; j++) 
                     row.push(cols[j].innerText);
                 
                 csv.push(row.join(","));        

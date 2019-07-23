@@ -2,6 +2,12 @@ body{
     background-color: rgb(34, 34, 34);
 }
 
+#drop_zone {
+    border: 5px dotted blue;
+    width:  200px;
+    height: 100px;
+  }
+
 #container{
     margin: 10px 16px 10px 16px;
 }

@@ -12,6 +12,7 @@ let mainWindow;
 app.on('ready', function(){ 
     //Create new window
     mainWindow = new BrowserWindow({
+        autoHideMenuBar: true,
         webPreferences:{
             nodeIntegration: true
         }

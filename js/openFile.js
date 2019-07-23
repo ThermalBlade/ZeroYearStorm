@@ -21,8 +21,14 @@ function printMatrix(matrix){
     cell.setAttribute("class", "invisibleCell");
     row.appendChild(cell);
     for(var i = 0; i < matrix[0].length; i ++){
-        cell = document.createElement("td");
-        buttonNode = document.createTextNode("X");
+        if(i < 5){
+            cell = document.createElement("td");
+            buttonNode = document.createTextNode("X");
+        }
+        else{
+            cell = document.createElement("td");
+            cell.setAttribute("class", "invisibleCell");
+        }
         if(i === 0){
             cell.appendChild(buttonNode);
             cell.setAttribute("class", "deleteOperationColCell");
@@ -30,6 +36,18 @@ function printMatrix(matrix){
         else if(i === 1){
             cell.appendChild(buttonNode);
             cell.setAttribute("class", "deleteStationColCell");
+        }
+        else if(i == 2){
+            cell.appendChild(buttonNode);
+            cell.setAttribute("class", "deleteAreaColCell");
+        }
+        else if(i == 3){
+            cell.appendChild(buttonNode);
+            cell.setAttribute("class", "deletePlanColCell");
+        }
+        else if(i == 4){
+            cell.appendChild(buttonNode);
+            cell.setAttribute("class", "deleteFlowColCell");
         }
         row.appendChild(cell);
     }
