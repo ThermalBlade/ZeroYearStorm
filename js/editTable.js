@@ -1,3 +1,5 @@
+var Promise = require('bluebird');
+
 function changeColor(color, elms) {
     let n = elms.length;
     for(var i = 0; i < n; i ++) {

@@ -1,18 +1,44 @@
 const {dialog} = require('electron').remote;
 const lineReader = require('line-reader');
+var Promise = require('bluebird');
 
+//Called if the document isn't a standard HEC-1 output
 function throwError(){
     dialog.showErrorBox("Invalid Document", "Please select a valid HEC-1 output.");
     $('#selectBtn').prop('disabled', false);
 }
 
-//This will only be called after the whole document is interpreted.
+//Creates the HTML table after the matrix is created.
 function printMatrix(matrix){
     var newTable = document.createElement("TABLE");
+    var row, cell, buttonNode, textNode;
     newTable.setAttribute("id", "hec1Table");
+
+    //TOP ROW OF COLUMN DELETE BUTTONS
+    row = document.createElement("tr");
+    row.setAttribute("class", "topButtonsRow");
+    cell = document.createElement("td");
+    cell.setAttribute("class", "invisibleCell");
+    row.appendChild(cell);
+    for(var i = 0; i < matrix[0].length; i ++){
+        cell = document.createElement("td");
+        buttonNode = document.createTextNode("X");
+        if(i === 0){
+            cell.appendChild(buttonNode);
+            cell.setAttribute("class", "deleteOperationColCell");
+        }
+        else if(i === 1){
+            cell.appendChild(buttonNode);
+            cell.setAttribute("class", "deleteStationColCell");
+        }
+        row.appendChild(cell);
+    }
+    newTable.appendChild(row);
+
+    //FILLS REST OF TABLE WITH BUTTONS/INPUT
     for(let i = 0; i < matrix.length; i ++){
-        var row = document.createElement("tr");
-        var cell = document.createElement("td");
+        row = document.createElement("tr");
+        cell = document.createElement("td");
         buttonNode = document.createTextNode("X");
         if(i === 0){
             cell.setAttribute("class", "deleteTopRowCell");
@@ -55,16 +81,18 @@ function printMatrix(matrix){
         
         //Fill table with HEC-1 output
         for(var j = 0; j < matrix[0].length; j ++){
-            var normalCell = document.createElement("td");
-            var textNode = document.createTextNode(matrix[i][j]);
-            normalCell.appendChild(textNode);
-            normalCell.setAttribute("class", "normalCell");
-            row.appendChild(normalCell);
+            cell = document.createElement("td");
+            textNode = document.createTextNode(matrix[i][j]);
+            cell.appendChild(textNode);
+            cell.setAttribute("class", "normalCell");
+            row.appendChild(cell);
         }
         newTable.appendChild(row);
     }
+
+    //CREATES THE DOWNLOAD CSV BUTTON
     var newButton = document.createElement("button");
-    var text = document.createTextNode("Download XLSX");
+    var text = document.createTextNode("Download CSV");
     newButton.appendChild(text);
     newButton.setAttribute("id", "downloadButton");
     if(matrix[0][0] === "OPERATION" && matrix[0][1] === "STATION"){
@@ -74,6 +102,9 @@ function printMatrix(matrix){
     else{
         throwError();
     }
+    /*for(var i = 0, row; row = newTable.rows[i], i < newTable.rows.length; i ++){
+        row.deleteCell(1);
+    }*/
 }
 
 //This chunk is functions that interpret the document, line-by-line
@@ -241,7 +272,10 @@ function interpretFile(filePath){
     var timingRow = false;
     var valid = false;
     var postCounter = 0;
-    lineReader.eachLine(filePath, function(line, last){
+    var lineCounter = 0;
+    var eachLine = Promise.promisify(lineReader.eachLine);
+    eachLine(filePath, function(line){
+        lineCounter += 1;
         if(line.includes("RATIOS APPLIED TO PRECIPITATION")){
             looking = true;
             matrix = [];
@@ -286,7 +320,8 @@ function interpretFile(filePath){
                 timingRow = false; 
             }
         }
-        if(last && valid === false){
+    }).then(function(){
+        if(lineCounter === 0 || !valid){
             throwError();
         }
     });

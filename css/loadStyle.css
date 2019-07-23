@@ -22,8 +22,36 @@ button{
 }
 
 /*.OUT table*/
+.deleteOperationColCell,
+.deleteStationColCell, 
+.deleteAreaColCell,
+.deletePlanColCell,
+.deleteFlowColCell{
+    border: 1px solid rgb(53, 53, 53);
+    border-bottom: 1px solid grey;
+    background-color: rgb(107, 107, 107);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 6px 14px;
+    user-select: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.deleteOperationColCell:hover,
+.deleteStationColCell:hover, 
+.deleteAreaColCell:hover,
+.deletePlanColCell:hover,
+.deleteFlowColCell:hover{
+    border: 1px solid rgb(53, 53, 53);
+    border-bottom: 1px solid grey;
+    background-color: rgb(100, 26, 26);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    user-select: none;
+}
 .normalCell{
-    border: 2px solid grey;
+    border: 1px solid grey;
+    outline-color: solid grey;
     color: rgb(255, 255, 255);
     text-align: center;
     padding: 6px;
@@ -53,27 +81,26 @@ button{
 .deleteOperationRowCell,
 .deleteFlowRowCell,
 .deleteTimeRowCell{
-    border: 2px solid rgb(53, 53, 53);
-    border-right: 2px solid grey;
+    border: 1px solid rgb(53, 53, 53);
+    border-right: 1px solid grey;
     background-color: rgb(107, 107, 107);
     color: rgb(255, 255, 255);
     text-align: center;
     padding: 6px 14px;
     user-select: none;
     font-weight: bold;
-    transition: 0.25s;
+    transition: 0.3s;
 }
 .deleteTopRowCell:hover,
 .deleteSecondRowCell:hover, 
 .deleteOperationRowCell:hover,
 .deleteFlowRowCell:hover,
 .deleteTimeRowCell:hover{
-    border: 2px solid rgb(53, 53, 53);
-    border-right: 2px solid grey;
+    border: 1px solid rgb(53, 53, 53);
+    border-right: 1px solid grey;
     background-color: rgb(100, 26, 26);
     color: rgb(255, 255, 255);
     text-align: center;
-    padding: 14px 14px;
     user-select: none;
 }
 .invisibleCell{
