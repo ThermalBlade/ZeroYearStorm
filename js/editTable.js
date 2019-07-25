@@ -234,35 +234,35 @@ function someListener(e){
     $(document).ready(function () {
         $(".deleteTopRowCell").click(function(){
             $('.topRow').animate({
-                opacity: 0.00001
+                opacity: 0.01
             }, 250, function(){
                 $(this).remove();
             });
         });
         $(".deleteSecondRowCell").click(function(){
             $('.secondRow').animate({
-                opacity: 0.00001
+                opacity: 0.01
             }, 250, function(){
                 $(this).remove();
             });
         });
         $(".deleteOperationRowCell").click(function(){
             $('.operationRow').animate({
-                opacity: 0.00001
+                opacity: 0.01
             }, 250, function(){
                 $(this).remove();
             });
         });
         $(".deleteFlowRowCell").click(function(){
             $('.flowRow').animate({
-                opacity: 0.00001
+                opacity: 0.01
             }, 250, function(){
                 $(this).remove();
             });
         });
         $(".deleteTimeRowCell").click(function(){
             $('.timeRow').animate({
-                opacity: 0.00001
+                opacity: 0.01
             }, 250, function(){
                 $(this).remove();
             });
@@ -280,7 +280,7 @@ function someListener(e){
             }
             $("tr").each(function(){
                 $(this).find("td:eq(" + colCounter + ")").animate({
-                    opacity: 0.00001
+                    opacity: 0.01
                 }, 250, function(){
                     $(this).remove();
                 });
@@ -298,7 +298,7 @@ function someListener(e){
             }
             $("tr").each(function(){
                 $(this).find("td:eq(" + colCounter + ")").animate({
-                    opacity: 0.00001
+                    opacity: 0.01
                 }, 250, function(){
                     $(this).remove();
                 });
@@ -316,7 +316,7 @@ function someListener(e){
             }
             $("tr").each(function(){
                 $(this).find("td:eq(" + colCounter + ")").animate({
-                    opacity: 0.00001
+                    opacity: 0.01
                 }, 250, function(){
                     $(this).remove();
                 });
@@ -334,7 +334,7 @@ function someListener(e){
             }
             $("tr").each(function(){
                 $(this).find("td:eq(" + colCounter + ")").animate({
-                    opacity: 0.00001
+                    opacity: 0.01
                 }, 250, function(){
                     $(this).remove();
                 });
@@ -352,7 +352,7 @@ function someListener(e){
             }
             $("tr").each(function(){
                 $(this).find("td:eq(" + colCounter + ")").animate({
-                    opacity: 0.00001
+                    opacity: 0.01
                 }, 250, function(){
                     $(this).remove();
                 });
@@ -361,7 +361,7 @@ function someListener(e){
     });
 }
 
-//DOWNLOAD CSV BUTTON
+//BUTTONS ON TOP
 document.addEventListener("click", function(e){
     if(e.target.id === "downloadButton")
     {
@@ -385,5 +385,13 @@ document.addEventListener("click", function(e){
             downloadCSV(csv.join("\n"), filename);
         }
         exportTableToCSV("working.csv")
+    }
+    else if(e.target.id === "newButton")
+    {
+        this.location.reload();
+    }
+    else if(e.target.id === "resetTable")
+    {
+        this.location.reload();
     }
 });

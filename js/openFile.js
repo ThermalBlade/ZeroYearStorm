@@ -132,6 +132,10 @@ function printMatrix(matrix){
         document.getElementById("container").appendChild(resetButton);
         document.getElementById("container").appendChild(newButton);
         document.getElementById("container").appendChild(newTable);
+        let hiddenTable = newTable;
+        hiddenTable.setAttribute("id", "hiddenTable");
+        document.getElementById("container").appendChild(hiddenTable);
+        document.getElementById("hiddenTable").style.visibility = "hidden";
     }
     else{
         throwError();
