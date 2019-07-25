@@ -13,6 +13,10 @@ app.on('ready', function(){
     //Create new window
     mainWindow = new BrowserWindow({
         autoHideMenuBar: true,
+        width: 800,
+        minWidth: 600,
+        height: 600,
+        minHeight: 400,
         webPreferences:{
             nodeIntegration: true
         }

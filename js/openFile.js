@@ -6,6 +6,7 @@ var Promise = require('bluebird');
 function throwError(){
     dialog.showErrorBox("Invalid Document", "Please select a valid HEC-1 output.");
     $('#selectBtn').prop('disabled', false);
+    openingFile = false;
 }
 
 //Creates the HTML table after the matrix is created.
@@ -109,11 +110,26 @@ function printMatrix(matrix){
     }
 
     //CREATES THE DOWNLOAD CSV BUTTON
-    var newButton = document.createElement("button");
-    var text = document.createTextNode("Download CSV");
-    newButton.appendChild(text);
-    newButton.setAttribute("id", "downloadButton");
+    let csvButton = document.createElement("button");
+    let csvText = document.createTextNode("Download CSV");
+    csvButton.appendChild(csvText);
+    csvButton.setAttribute("id", "downloadButton");
+
+    let resetButton = document.createElement("button");
+    let resetText = document.createTextNode("Reset Table");
+    resetButton.appendChild(resetText);
+    resetButton.setAttribute("id", "resetButton");
+
+    let newButton = document.createElement("button");
+    let newText = document.createTextNode("Upload New File");
+    newButton.appendChild(newText);
+    newButton.setAttribute("id", "newButton");
+
     if(matrix[0][0] === "OPERATION" && matrix[0][1] === "STATION"){
+        let dropZone = document.getElementById("drop_zone");
+        dropZone.parentNode.removeChild(dropZone);
+        document.getElementById("container").appendChild(csvButton);
+        document.getElementById("container").appendChild(resetButton);
         document.getElementById("container").appendChild(newButton);
         document.getElementById("container").appendChild(newTable);
     }
@@ -281,6 +297,7 @@ function timeRow(line){
 
 //Calls functions based on line type, goes through whole file line by line.
 function interpretFile(filePath){
+    openingFile = true;
     var looking = false;
     var post = false;
     var flowingRow = false;
@@ -361,8 +378,23 @@ document.querySelector('#selectBtn').addEventListener('click', function(e){
         properties: ['openFile'],
         filters: [{name: 'Hec-1', extensions: ['txt', 'OUT']}]
     }, function(filePaths){
-        if (filePaths !== undefined){
+        if(filePaths !== undefined){
             interpretFile(filePaths[0]);
+        }
+        else{
+            $('#selectBtn').prop('disabled', false);
         }
     });
 });
+
+document.addEventListener("mouseover", someListener);
+function someListener(e){
+    e.preventDefault();
+    if(droppedFilePath !== ""){
+        if (droppedFilePath !== undefined){
+            $('#selectBtn').prop('disabled', true);
+            interpretFile(droppedFilePath);
+        }
+        droppedFilePath = "";
+    }
+}
