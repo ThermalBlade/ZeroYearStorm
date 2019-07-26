@@ -109,7 +109,7 @@ function printMatrix(matrix){
         newTable.appendChild(row);
     }
 
-    //CREATES THE DOWNLOAD CSV BUTTON
+    //CREATES NEW BUTTONS
     let csvButton = document.createElement("button");
     let csvText = document.createTextNode("Download CSV");
     csvButton.appendChild(csvText);
@@ -127,15 +127,13 @@ function printMatrix(matrix){
 
     if(matrix[0][0] === "OPERATION" && matrix[0][1] === "STATION"){
         let dropZone = document.getElementById("drop_zone");
-        dropZone.parentNode.removeChild(dropZone);
-        document.getElementById("container").appendChild(csvButton);
-        document.getElementById("container").appendChild(resetButton);
-        document.getElementById("container").appendChild(newButton);
+        if(dropZone !== null){
+            dropZone.parentNode.removeChild(dropZone);
+            document.getElementById("container").appendChild(csvButton);
+            document.getElementById("container").appendChild(resetButton);
+            document.getElementById("container").appendChild(newButton);
+        }
         document.getElementById("container").appendChild(newTable);
-        let hiddenTable = newTable;
-        hiddenTable.setAttribute("id", "hiddenTable");
-        document.getElementById("container").appendChild(hiddenTable);
-        document.getElementById("hiddenTable").style.visibility = "hidden";
     }
     else{
         throwError();
@@ -364,25 +362,36 @@ function interpretFile(filePath){
 }
 
 //Establishes a default path to look for the file first.
-let username = process.env.username || process.env.user;
-let defPath;
-if(process.env.NODE_ENV == 'production'){
-    defPath = 'C:\\Users\\' + username + '\\Desktop\\'
-}
-else{
-    defPath = ''
-}
+//let defPath = '';
 
 //Look for a Hec-1 file via user, call interpret function with path.
 document.querySelector('#selectBtn').addEventListener('click', function(e){
     e.preventDefault();
     $('#selectBtn').prop('disabled', true);
     dialog.showOpenDialog({
-        defaultPath: defPath,
         properties: ['openFile'],
         filters: [{name: 'Hec-1', extensions: ['txt', 'OUT']}]
     }, function(filePaths){
         if(filePaths !== undefined){
+            let currentFilePath = document.createElement("span");
+            currentFilePath.setAttribute("id", "currentFilePath");
+            let textNode = document.createTextNode(filePaths[0]);
+            currentFilePath.appendChild(textNode);
+            document.getElementById("storage").appendChild(currentFilePath);
+            document.getElementById("currentFilePath").style.visibility = "hidden";
+            
+            let fnIndex = filePaths[0].lastIndexOf('\\');
+            let fnIndex2 = filePaths[0].lastIndexOf('.');
+            let name = filePaths[0].substring(fnIndex + 1, fnIndex2);
+            if(fnIndex !== -1 && fnIndex2 !== -1){
+                let currentDocName = document.createElement("span");
+                currentDocName.setAttribute("id", "currentDocName");
+                let textNode = document.createTextNode(name);
+                currentDocName.appendChild(textNode);
+                document.getElementById("storage").appendChild(currentDocName);
+                document.getElementById("currentDocName").style.visibility = "hidden";
+            }
+
             interpretFile(filePaths[0]);
         }
         else{
@@ -397,8 +406,21 @@ function someListener(e){
     if(droppedFilePath !== ""){
         if (droppedFilePath !== undefined){
             $('#selectBtn').prop('disabled', true);
+            let currentFilePath = document.createElement("span");
+            currentFilePath.setAttribute("id", "currentFilePath");
+            let textNode = document.createTextNode(droppedFilePath);
+            currentFilePath.appendChild(textNode);
+            document.getElementById("storage").appendChild(currentFilePath);
+            document.getElementById("currentFilePath").style.visibility = "hidden";
+            
             interpretFile(droppedFilePath);
         }
         droppedFilePath = "";
     }
+}
+
+function reloadTable(){
+    document.getElementById("hec1Table").remove();
+    let path = document.getElementById("currentFilePath").innerHTML;
+    interpretFile(path);
 }

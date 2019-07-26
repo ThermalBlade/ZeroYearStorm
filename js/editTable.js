@@ -368,7 +368,15 @@ document.addEventListener("click", function(e){
         function downloadCSV(csv, filename) {
             var csvFile;
             csvFile = new Blob([csv], {type: "text/csv"});
-            download(csvFile, "testing.csv", "text/csv");
+            let docName = document.getElementById("currentDocName");
+            let name;
+            if(docName !== null){
+                name = docName.innerHTML + ".csv";
+            }
+            else{
+                name = "HEC1OUTPUT.csv";
+            }
+            download(csvFile, name, "text/csv");
         }
         function exportTableToCSV(filename) {
             var csv = [];
@@ -390,8 +398,8 @@ document.addEventListener("click", function(e){
     {
         this.location.reload();
     }
-    else if(e.target.id === "resetTable")
+    else if(e.target.id === "resetButton")
     {
-        this.location.reload();
+        reloadTable();
     }
 });

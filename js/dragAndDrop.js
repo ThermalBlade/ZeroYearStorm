@@ -68,7 +68,9 @@ function dragLeaveHandler(ev){
 }
 
 window.addEventListener('resize', function(){
-  changeDivs();
+  if(this.document.getElementById('drop_zone') !== null){
+    changeDivs();
+  }
 });
 window.onload = function() {
   changeDivs();
