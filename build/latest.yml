@@ -1,8 +1,8 @@
 version: 1.0.0
 files:
   - url: zeroyearstorm-setup-1.0.0.exe
-    sha512: JsSwOFsj1v3HeglKvDEJq+uOVemZkxeCAHSf+D+xNi1HmITJGmYSlBNT5GbakoDr+drbylqdMD1V47hJGdu8MQ==
-    size: 43981119
+    sha512: s1ZQCYZyQFf9ZCdzamxVMCC4iMIju+fmuh/8MT5UuNgfsswf/sLUZhlLyiqnWk3yDgveNHE/+XayKHuLRbn0Hw==
+    size: 49390544
 path: zeroyearstorm-setup-1.0.0.exe
-sha512: JsSwOFsj1v3HeglKvDEJq+uOVemZkxeCAHSf+D+xNi1HmITJGmYSlBNT5GbakoDr+drbylqdMD1V47hJGdu8MQ==
-releaseDate: '2019-07-16T15:44:14.062Z'
+sha512: s1ZQCYZyQFf9ZCdzamxVMCC4iMIju+fmuh/8MT5UuNgfsswf/sLUZhlLyiqnWk3yDgveNHE/+XayKHuLRbn0Hw==
+releaseDate: '2019-07-26T23:45:27.243Z'
