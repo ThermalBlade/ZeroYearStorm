@@ -1,24 +1,37 @@
+//Variables to be accessed by openFile.js
 var droppedFilePath = "";
 var openingFile = false;
+//Fetch colors from CSS
+var bodyStyles = window.getComputedStyle(document.body);
+var dzLineColor = bodyStyles.getPropertyValue('--drop-zone-line-color'); 
+var dzHighlightColor = bodyStyles.getPropertyValue('--drop-zone-line-highlight');
+
+//Adjusts css boxes based on window size
+function changeDivs(addOns = ""){
+  newWidth = "width:" + String((window.innerWidth / 2) - 60) + "px;";
+  newHeight = "height:" + String(window.innerHeight - 25) + "px;";
+  newDropZoneInsert = newWidth + " " + newHeight + addOns;
+  document.getElementById('drop_zone').setAttribute("style", newDropZoneInsert);
+}
+
+//Glow up if file is over
+function dragOverHandler(ev){
+  ev.preventDefault();
+  changeDivs("border: 2px dashed " + dzHighlightColor + ";");
+}
+
+//Glow down if file leaves area
+function dragLeaveHandler(ev){
+  changeDivs("border: 2px dashed " + dzLineColor + ";");
+}
 
 //Called if the document isn't a standard HEC-1 output
-function throwFileNumberError(){
-  dialog.showErrorBox("Invalid Document", "Please only select one document.");
-  dragLeaveHandler();
-}
-function throwNonFileError(){
-  dialog.showErrorBox("Invalid Document", "Please select a valid file.");
-  dragLeaveHandler();
-}
-function throwNonTxtError(){
-  dialog.showErrorBox("Invalid Document", "Please select a .txt or .OUT file.");
-  dragLeaveHandler();
-}
-function waitForError(){
-  dialog.showErrorBox("Invalid Document", "Please select a .txt or .OUT file.");
+function throwFileError(message){
+  dialog.showErrorBox("Invalid Document", message);
   dragLeaveHandler();
 }
 
+//Called when something is dropped into left side
 function dropHandler(ev){
   ev.preventDefault();
   if(openingFile === false){
@@ -29,44 +42,28 @@ function dropHandler(ev){
           let path = file.path;
           let fileType = path.substr(path.length - 3);
           if(fileType !== 'OUT' && fileType !== 'txt'){
-            throwNonTxtError();
+            throwFileError("Please select a .txt or .OUT file.");
           }
           else{
-            //This is the passing condition for the file, pass it to openFile
+            //This is the passing condition for the file, openFile.js accesses this global variable.
             droppedFilePath = path;
           }
         }
         else{
-          throwNonFileError();
+          throwFileError("Please select a valid file.");
         }
       }
       else{
-        throwFileNumberError();
+        throwFileError("Please only select one document.");
       }
     }
   }
   else{
-    throw waitForError();
+    throwFileError("Please select a .txt or .OUT file.");
   }
 }
 
-function changeDivs(addOns = ""){
-  newWidth = "width:" + String((window.innerWidth / 2) - 60) + "px;";
-  newHeight = "height:" + String(window.innerHeight - 25) + "px;";
-  newDropZoneInsert = newWidth + " " + newHeight + addOns;
-  document.getElementById('drop_zone').setAttribute("style", newDropZoneInsert);
-}
-
-function dragOverHandler(ev){
-  ev.preventDefault();
-  changeDivs("border: 2px dashed white;");
-}
-
-function dragLeaveHandler(ev){
-  //ev.preventDefault();
-  changeDivs("border: 2px dashed grey;");
-}
-
+//Listen for a change in window size, call adjustments
 window.addEventListener('resize', function(){
   if(this.document.getElementById('drop_zone') !== null){
     changeDivs();

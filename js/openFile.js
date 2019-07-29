@@ -16,6 +16,10 @@ function printMatrix(matrix){
     newTable.setAttribute("id", "hec1Table");
 
     //TOP ROW OF COLUMN DELETE BUTTONS
+    function topAppendChild(thisClass){
+        cell.appendChild(buttonNode);
+        cell.setAttribute("class", thisClass);
+    }
     row = document.createElement("tr");
     row.setAttribute("id", "topButtonsRow");
     cell = document.createElement("td");
@@ -31,24 +35,19 @@ function printMatrix(matrix){
             cell.setAttribute("class", "invisibleCell");
         }
         if(i === 0){
-            cell.appendChild(buttonNode);
-            cell.setAttribute("class", "deleteOperationColCell");
+            topAppendChild("deleteOperationColCell");
         }
         else if(i === 1){
-            cell.appendChild(buttonNode);
-            cell.setAttribute("class", "deleteStationColCell");
+            topAppendChild("deleteStationColCell");
         }
         else if(i == 2){
-            cell.appendChild(buttonNode);
-            cell.setAttribute("class", "deleteAreaColCell");
+            topAppendChild("deleteAreaColCell");
         }
         else if(i == 3){
-            cell.appendChild(buttonNode);
-            cell.setAttribute("class", "deletePlanColCell");
+            topAppendChild("deletePlanColCell");
         }
         else if(i == 4){
-            cell.appendChild(buttonNode);
-            cell.setAttribute("class", "deleteFlowColCell");
+            topAppendChild("deleteFlowColCell");
         }
         row.appendChild(cell);
     }
@@ -361,9 +360,6 @@ function interpretFile(filePath){
     });
 }
 
-//Establishes a default path to look for the file first.
-//let defPath = '';
-
 //Look for a Hec-1 file via user, call interpret function with path.
 document.querySelector('#selectBtn').addEventListener('click', function(e){
     e.preventDefault();
@@ -400,6 +396,7 @@ document.querySelector('#selectBtn').addEventListener('click', function(e){
     });
 });
 
+//Listen for drag-and-dropped file
 document.addEventListener("mouseover", someListener);
 function someListener(e){
     e.preventDefault();
@@ -412,13 +409,13 @@ function someListener(e){
             currentFilePath.appendChild(textNode);
             document.getElementById("storage").appendChild(currentFilePath);
             document.getElementById("currentFilePath").style.visibility = "hidden";
-            
             interpretFile(droppedFilePath);
         }
         droppedFilePath = "";
     }
 }
 
+//Called from editTable.js
 function reloadTable(){
     document.getElementById("hec1Table").remove();
     let path = document.getElementById("currentFilePath").innerHTML;

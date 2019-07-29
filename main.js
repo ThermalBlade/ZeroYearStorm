@@ -3,7 +3,7 @@ const url = require('url');
 const path = require('path');
 
 //Environment type
-process.env.NODE_ENV = 'development'
+process.env.NODE_ENV = 'production'
 
 const {app, BrowserWindow, Menu} = electron;
 let mainWindow;
@@ -45,8 +45,7 @@ const mainMenuTemplate = [
         submenu:[
             {
                 label: 'Quit',
-                accelerator: process.platform == 'darwin' ? //On mac?
-                'Command+Q' : 'Ctrl+Q',
+                accelerator: 'Ctrl+Q',
                 click(){
                     app.quit();
                 }
@@ -54,11 +53,6 @@ const mainMenuTemplate = [
         ]
     }
 ];
-
-//If mac, add empty object to menu
-if(process.platform == 'darwin'){
-    mainMenuTemplate.unshift({});
-}
 
 //Add dev tools item if not in production
 if(process.env.NODE_ENV !== 'production'){

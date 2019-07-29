@@ -1,8 +1,4 @@
-body{
-    background-color: rgb(34, 34, 34);
-    margin: 0px;
-}
-
+/*Scroll bar things*/
 ::-webkit-scrollbar {
     background-color: grey;
 }
@@ -20,153 +16,160 @@ body{
     background-color: grey;
 }
 
+/*Color variables*/
+:root{
+    --background-color: rgb(34, 34, 34);
+    --darkest-grey: rgb(53, 53, 53);
+    --second-darkest-grey: rgb(60, 60, 60);
+    --third-darkest-grey: rgb(66, 66, 66);
+    --fourth-darkest-grey: rgb(72, 72, 72);
+    --button-color: rgb(108, 108, 108);
+    --red-highlight: rgb(100, 26, 26);
+    --table-border-color: grey;
+    --drop-zone-line-color: grey;
+    --drop-zone-line-highlight: white;
+    --text-color: white;
+    --font-family: "Trebuchet MS", Helvetica, sans-serif;
+    --transition-time: 0.25s;
+}
+
+body{
+    background-color: var(--background-color);
+    font-family: var(--font-family);
+    margin: 0px;
+}
+
+/*Button styling*/
 button{
-    white-space: nowrap;
+    color: var(--text-color);
+    border: 1px solid var(--darkest-grey);
+    background-color: var(--button-color);
+    font-family: var(--font-family);
+    transition: var(--transition-time);
+    font-size: 16px;
     padding: 8px;
     margin: 6px;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 16px;
     border-radius: 2px;
-    border: 1px solid rgb(53, 53, 53);
-    transition: 0.25s;
-
-    color: white;
-    background-color: rgb(108, 108, 108);
+    white-space: nowrap;
 }
 button:hover, button:disabled{
-    background-color: rgb(60, 60, 60)
+    background-color: var(--second-darkest-grey);
 }
 button:focus{
     outline: 0;
 }
 
-#downloadButton{
-    border: 0px;
-}
-
+/*Drop Zone stuff*/
 #drop_zone {
-    border: 2px dashed grey;
+    border: 2px dashed var(--drop-zone-line-color);
+    transition: var(--transition-time);
     border-radius: 8px;
     margin: 10px;
     padding: 0px 20px 0px 20px;
-    transition: 0.25s;
-
     line-height: 45px;
 }
-
 #HTC{
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 28px;
-    color: rgb(255, 255, 255);
+    color: var(--text-color);
     font-weight: bold;
 }
-
 #DDF{
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 18px;
-    color: rgb(255, 255, 255);
+    color: var(--text-color);
 }
 
+/*Where the table and buttons go*/
 #container{
     margin: 10px 16px 10px 16px;
 }
 
-table{
+/*.OUT table*/
+#hec1Table{
     border-collapse: collapse;
     text-align: center;
     margin: 6px;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 16px;
     white-space: nowrap;
 }
-
-/*.OUT table*/
+.normalCell,
+.invisibleCell,
+.topRow,
+.secondRow,
+.operationRow,
+.flowRow,
+.timeRow,
+.deleteOperationColCell,
+.deleteStationColCell, 
+.deleteAreaColCell,
+.deletePlanColCell,
+.deleteFlowColCell,
+.deleteTopRowCell,
+.deleteSecondRowCell, 
+.deleteOperationRowCell,
+.deleteFlowRowCell,
+.deleteTimeRowCell{
+    transition: var(--transition-time);
+    color: var(--text-color);
+    text-align: center;
+}
+.normalCell{
+    border: 1px solid var(--table-border-color);
+    padding: 6px;
+}
+.invisibleCell{
+    background-color: var(--background-color);
+    padding: 6px 14px;
+    user-select: none;
+    font-weight: bold;
+}
+.topRow{
+    background-color: var(--fourth-darkest-grey);
+}
+.secondRow{
+    background-color: var(--fourth-darkest-grey);
+}
+.operationRow{
+    background-color: var(--second-darkest-grey);
+}
+.flowRow{
+    background-color: var(--third-darkest-grey);
+}
+.timeRow{
+    background-color: var(--fourth-darkest-grey);
+}
 .deleteOperationColCell,
 .deleteStationColCell, 
 .deleteAreaColCell,
 .deletePlanColCell,
 .deleteFlowColCell{
-    border: 1px solid rgb(53, 53, 53);
-    border-bottom: 1px solid grey;
-    background-color: rgb(108, 108, 108);
-    color: rgb(255, 255, 255);
-    text-align: center;
+    border: 1px solid var(--darkest-grey);
+    border-bottom: 1px solid var(--table-border-color);
+    background-color: var(--button-color);
     padding: 6px 14px;
     user-select: none;
     font-weight: bold;
-    transition: 0.25s;
-}
-.deleteOperationColCell:hover,
-.deleteStationColCell:hover, 
-.deleteAreaColCell:hover,
-.deletePlanColCell:hover,
-.deleteFlowColCell:hover{
-    border: 1px solid rgb(53, 53, 53);
-    border-bottom: 1px solid grey;
-    background-color: rgb(100, 26, 26);
-    color: rgb(255, 255, 255);
-    text-align: center;
-    user-select: none;
-}
-.normalCell{
-    border: 1px solid grey;
-    outline-color: solid grey;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 6px;
-    transition: 0.25s;
-}
-.topRow{
-    background-color: rgb(72, 72, 72);
-    transition: 0.25s;
-}
-.secondRow{
-    background-color: rgb(72, 72, 72);
-    transition: 0.25s;
-}
-.operationRow{
-    background-color: rgb(60, 60, 60);
-    transition: 0.25s;
-}
-.flowRow{
-    background-color: rgb(66, 66, 66);
-    transition: 0.25s;
-}
-.timeRow{
-    background-color: rgb(72, 72, 72);
-    transition: 0.25s;
 }
 .deleteTopRowCell,
 .deleteSecondRowCell, 
 .deleteOperationRowCell,
 .deleteFlowRowCell,
 .deleteTimeRowCell{
-    border: 1px solid rgb(53, 53, 53);
-    border-right: 1px solid grey;
-    background-color: rgb(108, 108, 108);
-    color: rgb(255, 255, 255);
-    text-align: center;
+    border: 1px solid var(--darkest-grey);
+    border-right: 1px solid (var(--table-border-color));
+    background-color: var(--button-color);
     padding: 6px 14px;
     user-select: none;
     font-weight: bold;
-    transition: 0.25s;
 }
+.deleteOperationColCell:hover,
+.deleteStationColCell:hover, 
+.deleteAreaColCell:hover,
+.deletePlanColCell:hover,
+.deleteFlowColCell:hover,
 .deleteTopRowCell:hover,
 .deleteSecondRowCell:hover, 
 .deleteOperationRowCell:hover,
 .deleteFlowRowCell:hover,
 .deleteTimeRowCell:hover{
-    border: 1px solid rgb(53, 53, 53);
-    border-right: 1px solid grey;
-    background-color: rgb(100, 26, 26);
-    color: rgb(255, 255, 255);
-    text-align: center;
-    user-select: none;
-}
-.invisibleCell{
-    background-color: rgb(34, 34, 34);
-    padding: 6px 14px;
-    user-select: none;
-    font-weight: bold;
-    transition: 0.25s;
+    background-color: var(--red-highlight);
 }
