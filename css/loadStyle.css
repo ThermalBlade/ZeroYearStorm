@@ -155,7 +155,7 @@ button:focus{
 .deleteFlowRowCell,
 .deleteTimeRowCell{
     border: 1px solid var(--darkest-grey);
-    border-right: 1px solid (var(--table-border-color));
+    border-right: 1px solid var(--table-border-color);
     background-color: var(--button-color);
     padding: 6px 14px;
     user-select: none;
