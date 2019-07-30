@@ -8,8 +8,10 @@ var dzHighlightColor = bodyStyles.getPropertyValue('--drop-zone-line-highlight')
 
 //Adjusts css boxes based on window size
 function changeDivs(addOns = ""){
-  newWidth = "width:" + String((window.innerWidth / 2) - 60) + "px;";
-  newHeight = "height:" + String(window.innerHeight - 25) + "px;";
+  let newWidth = "width:" + String((window.innerWidth / 2) - 60) + "px;";
+  let newHeight = "height:" + String(window.innerHeight - 25) + "px;";
+  let newDropZoneInsert = newWidth + " " + newHeight + addOns;
+  document.getElementById('drop_zone').setAttribute("style", newDropZoneInsert);
   newDropZoneInsert = newWidth + " " + newHeight + addOns;
   document.getElementById('drop_zone').setAttribute("style", newDropZoneInsert);
 }

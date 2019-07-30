@@ -60,7 +60,8 @@ button:focus{
 }
 
 /*Drop Zone stuff*/
-#drop_zone {
+#drop_zone,
+#drop_zone2{
     border: 2px dashed var(--drop-zone-line-color);
     transition: var(--transition-time);
     border-radius: 8px;
