@@ -409,6 +409,19 @@ function someListener(e){
             currentFilePath.appendChild(textNode);
             document.getElementById("storage").appendChild(currentFilePath);
             document.getElementById("currentFilePath").style.visibility = "hidden";
+
+            let fnIndex = filePaths[0].lastIndexOf('\\');
+            let fnIndex2 = filePaths[0].lastIndexOf('.');
+            let name = filePaths[0].substring(fnIndex + 1, fnIndex2);
+            if(fnIndex !== -1 && fnIndex2 !== -1){
+                let currentDocName = document.createElement("span");
+                currentDocName.setAttribute("id", "currentDocName");
+                let textNode = document.createTextNode(name);
+                currentDocName.appendChild(textNode);
+                document.getElementById("storage").appendChild(currentDocName);
+                document.getElementById("currentDocName").style.visibility = "hidden";
+            }
+            
             interpretFile(droppedFilePath);
         }
         droppedFilePath = "";
