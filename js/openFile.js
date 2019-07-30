@@ -410,9 +410,9 @@ function someListener(e){
             document.getElementById("storage").appendChild(currentFilePath);
             document.getElementById("currentFilePath").style.visibility = "hidden";
 
-            let fnIndex = filePaths[0].lastIndexOf('\\');
-            let fnIndex2 = filePaths[0].lastIndexOf('.');
-            let name = filePaths[0].substring(fnIndex + 1, fnIndex2);
+            let fnIndex = droppedFilePath.lastIndexOf('\\');
+            let fnIndex2 = droppedFilePath.lastIndexOf('.');
+            let name = droppedFilePath.substring(fnIndex + 1, fnIndex2);
             if(fnIndex !== -1 && fnIndex2 !== -1){
                 let currentDocName = document.createElement("span");
                 currentDocName.setAttribute("id", "currentDocName");
@@ -421,7 +421,7 @@ function someListener(e){
                 document.getElementById("storage").appendChild(currentDocName);
                 document.getElementById("currentDocName").style.visibility = "hidden";
             }
-            
+
             interpretFile(droppedFilePath);
         }
         droppedFilePath = "";
