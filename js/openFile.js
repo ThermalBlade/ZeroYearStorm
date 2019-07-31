@@ -125,7 +125,7 @@ function printMatrix(matrix){
     newButton.setAttribute("id", "newButton");
 
     if(matrix[0][0] === "OPERATION" && matrix[0][1] === "STATION"){
-        let dropZone = document.getElementById("drop_zone");
+        let dropZone = document.getElementById("dropZoneHolder");
         if(dropZone !== null){
             dropZone.parentNode.removeChild(dropZone);
             document.getElementById("container").appendChild(csvButton);
@@ -313,7 +313,7 @@ function interpretFile(filePath){
             looking = true;
             matrix = [];
         }
-        else if(line.includes("SUMMARY OF KINEMATIC WAVE")){
+        else if(line.includes("SUMMARY OF")){
             printMatrix(matrix);
             valid = true;
             looking = false;

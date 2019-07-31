@@ -60,6 +60,9 @@ button:focus{
 }
 
 /*Drop Zone stuff*/
+#dropZoneHolder{
+    margin: 0px;
+}
 #drop_zone,
 #drop_zone2{
     border: 2px dashed var(--drop-zone-line-color);
@@ -69,7 +72,15 @@ button:focus{
     padding: 0px 20px 0px 20px;
     line-height: 45px;
 }
+#drop_zone{
+    float:left;
+}
+#drop_zone2{
+    float:right;
+}
 #HTC{
+    padding: 0px;
+    margin: 16px;
     font-size: 28px;
     color: var(--text-color);
     font-weight: bold;

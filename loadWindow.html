@@ -5,21 +5,23 @@
     <link rel="stylesheet" type="text/css" href="css/loadStyle.css">
 </head>
 <body>
-    <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);">
+    <div id="dropZoneHolder">
+        <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);">
+                <center>
+                    <p id="HTC">HEC-1 TO CSV</p>
+                    <br><br>
+                    <p id="DDF">Drag and drop a file or...</p>
+                    <button id="selectBtn">Choose a File</button>
+                </center>
+        </div>
+        <div id="drop_zone2" ondrop="dropHandler2(event);" ondragover="dragOverHandler2(event);" ondragleave="dragLeaveHandler2(event);">
             <center>
-                <p id="HTC">HEC-1 TO CSV</p>
+                <p id="HTC">CSV TO .DAT</p>
                 <br><br>
                 <p id="DDF">Drag and drop a file or...</p>
-                <button id="selectBtn">Choose a File</button>
+                <button id="selectBtn2">Choose a File</button>
             </center>
-    </div>
-    <div id="drop_zone2" ondrop="dropHandler2(event);" ondragover="dragOverHandler2(event);" ondragleave="dragLeaveHandler2(event);">
-        <center>
-            <p id="HTC">CSV TO .DAT</p>
-            <br><br>
-            <p id="DDF">Drag and drop a file or...</p>
-            <button id="selectBtn">Choose a File</button>
-        </center>
+        </div>
     </div>
     <div id="container"></div>
     <div id="storage"></div>
@@ -27,6 +29,7 @@
     <script src="js/dragAndDrop.js" type="text/javascript"></script>
     <script src="js/download.js" type="text/javascript"></script>
     <script src="js/openFile.js" type="text/javascript"></script>
+    <script src="js/openFile2.js" type="text/javascript"></script>
     <script src="js/editTable.js" type="text/javascript"></script>
 </body>
 </html>
