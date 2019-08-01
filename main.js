@@ -3,7 +3,7 @@ const url = require('url');
 const path = require('path');
 
 //Environment type
-process.env.NODE_ENV = 'development'
+process.env.NODE_ENV = 'production'
 
 const {app, BrowserWindow, Menu} = electron;
 let mainWindow;
