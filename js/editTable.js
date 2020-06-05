@@ -232,27 +232,27 @@ function someListener(e){
     e.preventDefault();
     checkForHighlight();
     $(document).ready(function () {
-        $(".deleteTopRowCell").click(function(){
+
             $('.topRow').animate({
                 opacity: 0.01
             }, 250, function(){
                 $(this).remove();
             });
-        });
-        $(".deleteSecondRowCell").click(function(){
+
+
             $('.secondRow').animate({
                 opacity: 0.01
             }, 250, function(){
                 $(this).remove();
             });
-        });
-        $(".deleteOperationRowCell").click(function(){
+
+
             $('.operationRow').animate({
                 opacity: 0.01
             }, 250, function(){
                 $(this).remove();
             });
-        });
+
         $(".deleteFlowRowCell").click(function(){
             $('.flowRow').animate({
                 opacity: 0.01
@@ -260,15 +260,16 @@ function someListener(e){
                 $(this).remove();
             });
         });
-        $(".deleteTimeRowCell").click(function(){
+
             $('.timeRow').animate({
                 opacity: 0.01
             }, 250, function(){
+                deleteCols();
                 $(this).remove();
             });
-        });
 
-        $(".deleteOperationColCell").click(function(){
+
+        function deleteCols(){
             let row = document.getElementById("topButtonsRow");
             let button = "deleteOperationColCell"
             let colCounter;
@@ -285,7 +286,42 @@ function someListener(e){
                     $(this).remove();
                 });
             })
-        });
+
+            row = document.getElementById("topButtonsRow");
+            button = "deletePlanColCell"
+            colCounter;
+            for(var j = 0; j < row.cells.length; j ++){
+                if(row.cells[j].className === button){
+                    colCounter = j;
+                    break;
+                }
+            }
+            $("tr").each(function(){
+                $(this).find("td:eq(" + colCounter + ")").animate({
+                    opacity: 0.01
+                }, 250, function(){
+                    $(this).remove();
+                });
+            })
+            row = document.getElementById("topButtonsRow");
+            button = "deleteFlowColCell"
+            colCounter;
+            for(var j = 0; j < row.cells.length; j ++){
+                if(row.cells[j].className === button){
+                    colCounter = j;
+                    break;
+                }
+            }
+            $("tr").each(function(){
+                $(this).find("td:eq(" + colCounter + ")").animate({
+                    opacity: 0.01
+                }, 250, function(){
+                    $(this).remove();
+                });
+            })
+        }
+
+
         $(".deleteStationColCell").click(function(){
             let row = document.getElementById("topButtonsRow");
             let button = "deleteStationColCell"
@@ -322,42 +358,8 @@ function someListener(e){
                 });
             })
         });
-        $(".deletePlanColCell").click(function(){
-            let row = document.getElementById("topButtonsRow");
-            let button = "deletePlanColCell"
-            let colCounter;
-            for(var j = 0; j < row.cells.length; j ++){
-                if(row.cells[j].className === button){
-                    colCounter = j;
-                    break;
-                }
-            }
-            $("tr").each(function(){
-                $(this).find("td:eq(" + colCounter + ")").animate({
-                    opacity: 0.01
-                }, 250, function(){
-                    $(this).remove();
-                });
-            })
-        });
-        $(".deleteFlowColCell").click(function(){
-            let row = document.getElementById("topButtonsRow");
-            let button = "deleteFlowColCell"
-            let colCounter;
-            for(var j = 0; j < row.cells.length; j ++){
-                if(row.cells[j].className === button){
-                    colCounter = j;
-                    break;
-                }
-            }
-            $("tr").each(function(){
-                $(this).find("td:eq(" + colCounter + ")").animate({
-                    opacity: 0.01
-                }, 250, function(){
-                    $(this).remove();
-                });
-            })
-        });
+
+
     });
 }
 

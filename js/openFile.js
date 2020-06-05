@@ -321,6 +321,7 @@ function interpretFile(filePath){
         if(looking === true){
             if(line.includes("OPERATION")){
                 matrix.push(startingRow(line));
+                var a = 1;
             }
             else if(matrix.length === 1){
                 matrix.push(numbersRow(line));
