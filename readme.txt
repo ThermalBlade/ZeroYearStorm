@@ -1,1 +1,1 @@
-HEC-1 conversions to csv by Cole Proctor.
+HEC-1 conversions by Cole Proctor
